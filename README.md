@@ -1,4 +1,4 @@
-# 🏭試算表邏輯建模與生產管理控制系統 (Industrial Engineering Excel Models)
+# 🏭試算表邏輯建模與生產管理控制系統
 
 ![Microsoft Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
 
@@ -15,7 +15,7 @@
 
 ---
 
-## 📌 核心模組與系統實作詳解 (Core Modules & System Logic)
+## 📌 核心模組與系統實作詳解
 
 ### 1. SCADA 設備動態監控與階層式告警矩陣 
 
@@ -46,7 +46,7 @@
 
 * **現場痛點**：廠房離尖峰電價計算繁雜，且當即時用電量逼近契約容量上限時，缺乏自動化的多階預警機制，易導致罰款風險。
 * **邏輯架構**：
-  * 自動精準稽核即時時間電價（TOU Rate, 元/度）。
+  * 自動精準稽核即時時間電價（元/度）。
   * 計算即時需量比率（即時用電 / 契約容量），觸發 Level 1~3 四階降載預警機制。
 * **使用的 Excel 函式與核心公式**：
   * **關鍵函式**：`XLOOKUP`、`IFS`、`絕對引用 ($)`
