@@ -83,7 +83,7 @@
 
 | 技術類別 | 關鍵函數 / 功能 | 工業應用情境與優勢 |
 | :--- | :--- | :--- |
-| **進階邏輯算式** | `XLOOKUP`, `IFS`, `SWITCH`, `AND`, `OR` | SCADA 複合告警判定、MES SOP 規格動態檢核、EMS 時間電價自動查表 |
+| **邏輯算式** | `XLOOKUP`, `IFS`, `SWITCH`, `AND`, `OR` | SCADA 複合告警判定、MES SOP 規格動態檢核、EMS 時間電價自動查表 |
 | **架構設計** | 絕對引用 (`$`)、參數解耦 (Decoupling) | 獨立動態門檻區，降低模組間耦合度，實現無程式碼改變維護 |
 | **數據防呆與權限** | Data Validation, RBAC, Nested Error-Trapping | 未授權輸入攔截、空值與異常資料隔離、超標自動輸出診斷語法 |
 | **數據分析與視覺化**| Pivot Table (% Running Total), Pareto Chart, Slicer | TPM 設備六大損失歸因、80/20 瓶頸定位、動態戰情室互動儀表板 |
