@@ -1,67 +1,104 @@
-# 🏭 工業級試算表邏輯建模與生產管理控制系統 (Industrial Engineering Excel Models)
+# 🏭 Industrial-Excel-System-Logic-Suite
+> **工業級試算表邏輯建模與生產管理控制系統 (Industrial Engineering Excel Models)**
 
-本專案庫包含 4 個基於工業工程（IE）與生產管理（Production Management）標準建構的 Excel 高階邏輯模組。專案擺脫傳統單純試算表計算思維，導入參數解耦、防呆驗證 與 權限控管 架構，展示將工業控制與數據邏輯落地於 Excel 的系統化設計能力。
+![Microsoft Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
+![Industrial Engineering](https://img.shields.io/badge/Domain-Industrial_Engineering-0078D4?style=for-the-badge)
+![Architecture](https://img.shields.io/badge/Architecture-Parameter_Decoupling-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
----
-
-## 📌 核心模組與系統實作畫面 (Core Modules & System Logic)
-
-### 1. SCADA 設備動態監控與階層式告警矩陣
-
-![SCADA 設備動態監控與警報邏輯模組](./備運轉動態監控與警報邏輯模組.png)
-
-* **系統痛點**：傳統單一門檻值容易造成「極端異常降級漏報」與告警遮蔽（Alarm Masking）。
-* **邏輯架構**：建立 HH/H (High-High / High) 雙階層警報機制，整合 `IFS` 與 `AND`/`OR` 多條件布林邏輯算式。
-* **工程設計**：採用參數解耦（`$E$2:$G$3` 絕對引用），將動態門檻值抽出至獨立參數區，實現全模組免修改算式即可動態調整告警條件。
+本專案庫包含 4 個基於工業工程（IE）與生產管理（Production Management）標準建構的 Excel 高階邏輯模組。專案擺脫傳統單純試算表數據填寫與基礎運算思維，導入**參數解耦（Parameter Decoupling）**、**防呆驗證（Error-Trapping）**與**權限控管（RBAC）**等高階系統架構思維，展現將工業控制、系統監控與數據邏輯完整落地於 Excel 的系統化設計能力。
 
 ---
 
-### 2. EMS 時間電價稽核與四階降載預警模型
+## 💡 專案核心設計理念 (Core Architecture Principles)
 
-![EMS 廠房時間電價計算與契約容量超標預警](./廠房時間電價計算與契約容量超標預警.png)
-
-* **系統痛點**：離尖峰電價計算複雜，且超過契約容量時缺乏即時預警機制。
-* **邏輯架構**：運用 `XLOOKUP` 動態比對時間電價（TOU Rate）進行電費精準稽核；透過需量比率計算觸發 Level 1~3 四階降載預警。
-* **工程設計**：將契約容量與電費基準參數化，確保費率調整時只需更新右側對照表即可即時連動全廠稽核邏輯。
+1. **參數解耦（Parameter Decoupling）**：將控制門檻、費率基準與規格上下限獨立至參數控制區，實現「修改參數即連動全表」，無需改動任何核心公式。
+2. **階層式診斷（Hierarchical Error-Trapping）**：採用多層巢狀邏輯算式，自動區分「權限不足」、「資料缺失」與「數值超標」，提供精準的系統診斷訊息。
+3. **資料防呆與權限控制（RBAC）**：結合動態驗證與條件式格式化，防止無效寫入、越權操作與資料異常降級漏報。
+4. **高可讀性與數據戰情化**：導入雙軸帕雷托圖（Pareto Chart）與動態交叉篩選器（Slicer），將底層數據迅速轉化為具備商業決策價值的管理視窗。
 
 ---
 
-### 3. MES/QA SOP 規格驗證與 RBAC 權限控管
+## 📌 核心模組與系統實作詳解 (Core Modules & System Logic)
+
+### 1. SCADA 設備動態監控與階層式告警矩陣 (`01_SCADA_Alarm_Matrix.xlsx`)
+
+![SCADA 設備動態監控與警報邏輯模組](./images/備運轉動態監控與警報邏輯模組.png)
+
+* **現場痛點**：傳統系統常採用單一門檻或獨立判斷，當溫度與振動同時異常時，容易因優先順序覆蓋而造成「極端異常降級漏報」（Alarm Masking）。
+* **邏輯架構**：建立 HH/H (High-High / High) 雙階層複合警報機制，整合 `IFS` 與 `AND`/`OR` 多條件布林邏輯算式，同步校驗運轉溫度 (°C) 與振動頻率 (Hz)。
+* **技術細節**：
+  * 使用絕對引用（`$E$2:$G$3`）將 HH 與 H 門檻抽出至「控制參數區」。
+  * 系統自動比對即時數據並輸出：`正常運作 (Normal)`、`警告: 運轉數值偏高 (H)` 與 `嚴重警報: 過熱且異常震動 (HH)` 等明確診斷。
+
+---
+
+### 2. EMS 時間電價稽核與四階降載預警模型 (`02_EMS_TOU_LoadShedding.xlsx`)
+
+![EMS 廠房時間電價計算與契約容量超標預警](./images/廠房時間電價計算與契約容量超標預警.png)
+
+* **現場痛點**：廠房離尖峰電價計算繁雜，且當即時用電量逼近契約容量上限時，缺乏自動化的多階預警機制，易導致罰款風險。
+* **邏輯架構**：
+  * 運用 `XLOOKUP` 對照時段類型（尖峰/離尖峰），自動精準稽核即時時間電價（TOU Rate, 元/度）。
+  * 計算即時需量比率（即時用電 / 契約容量），觸發 Level 1~3 四階降載預警機制。
+* **技術細節**：
+  * 預警邏輯涵蓋：`正常運轉` (<= 80%)、`負載監控 (Level 1)` (> 80%)、`預先降載警告 (Level 2)` (> 90%) 與 `臨界強制降載 (Level 3)` (> 95%)。
+  * 契約容量與單價全數參數化，費率或政策調整時可零風險即時維護。
+
+---
+
+### 3. MES/QA SOP 規格驗證與 RBAC 權限控管 (`03_MES_SOP_RBAC_Validation.xlsx`)
 
 #### 前台輸入與 QA 診斷校對
-![MES QA 邏輯校對結果](./MES%20後台%20RBAC%20權限與%20SOP%20規格QA%20驗證模組-1.png)
+![MES QA 邏輯校對結果](./images/MES%20後台%20RBAC%20權限與%20SOP%20規格QA%20驗證模組-1.png)
 
 #### 後台 SOP 主規格與角色授權表 (Master Table)
-![MES SOP 規格與 RBAC 權限主表](./MES%20後台%20RBAC%20權限與%20SOP%20規格QA%20驗證模組-2.png)
+![MES SOP 規格與 RBAC 權限主表](./images/MES%20後台%20RBAC%20權限與%20SOP%20規格QA%20驗證模組-2.png)
 
-* **系統痛點**：人為誤輸入超出 SOP 規格之數據，或未授權人員隨意更動生產參數。
-* **邏輯架構**：結合 `XLOOKUP` 自動檢核 SOP 上下限規格（USL/LSL），並嵌入角色權限控制（RBAC）防呆機制。
-* **工程設計**：利用進階巢狀函數，自動攔截「非法寫入」、「空值」與「越權操作」，明確輸出診斷訊息（如：`錯誤：權限不足 (需 Admin)`、`錯誤：超出 SOP 規格`）。
+* **現場痛點**：現場操作員誤輸入超出 SOP 規格之參數，或未授權人員（如 Operator 調整 Admin 權限參數）隨意更改機台設定，導致品質不良率上升。
+* **邏輯架構**：
+  * 整合 `XLOOKUP` 動態檢核 SOP 上下限規格（USL/LSL）。
+  * 導入角色權限控制（RBAC, Role-Based Access Control）邏輯，自動核對操作員權限是否符合該參數設定要求。
+* **技術細節**：
+  * 階層式診斷優先順序：**1. 檢查空值** -> **2. 檢查權限** -> **3. 檢查 SOP 數值範圍** -> **4. 輸出通過狀態**。
+  * 精確輸出警報訊息：`❌錯誤：參數不可為空`、`❌錯誤：權限不足 (需 Admin)`、`❌錯誤：超出 SOP 規格 (20 - 80)` 與 `✔️QA 驗證通過`。
 
 ---
 
-### 4. TPM 設備六大損失與帕雷托 (Pareto) 數據分析儀表板
+### 4. TPM 設備六大損失與帕雷托 (Pareto) 數據分析儀表板 (`04_TPM_Pareto_Downtime_Analysis.xlsx`)
 
 #### 原始停機日誌資料表 (Raw Data Log)
-![TPM 設備損失分類原始資料表](./TPM%20設備損失分類.png)
+![TPM 設備損失分類原始資料表](./images/TPM%20設備損失分類.png)
 
 #### 帕雷托樞紐分析表與互動式戰情儀表板 (Dashboard)
-![TPM 設備損失分類樞紐分析表與雙軸圖](./TPM%20設備損失分類樞紐分析表.png)
+![TPM 設備損失分類樞紐分析表與雙軸圖](./images/TPM%20設備損失分類樞紐分析表.png)
 
-* **系統痛點**：設備停機日誌缺乏系統化歸因，導致改善資源無法精準投入。
-* **邏輯架構**：依據 TPM 六大損失分類歸納數據，利用樞紐分析表（Pivot Table）設定「按某一欄位彙總的百分比（累計百分比）」。
-* **工程設計**：建構雙軸柏拉圖（Pareto Chart），精確定位造成 80% 停機時間的 20% 關鍵故障源（如：設備故障占 72.5%），並搭配互動式交叉篩選器（Slicer）提供跨機台與班別之多維度分析。
+* **現場痛點**：停機日誌資料零散，未進行系統化歸因，致使改善資源無法精準投放在最關鍵的設備故障點上。
+* **邏輯架構**：
+  * 依據 TPM（全員生產管理）設備六大損失分類標準進行停機日誌歸納。
+  * 使用樞紐分析表（Pivot Table）與高級值顯示方式設定（按特定欄位累計的百分比），自動計算關鍵累積貢獻度。
+* **技術細節**：
+  * 繪製專業雙軸帕雷托圖（Pareto Chart），直觀展現符合 80/20 法則的瓶頸項目（如設備故障累計占比達 72.5%）。
+  * 配置「機台編號」與「運轉班別」互動式交叉篩選器（Slicer），支援即時切換動態交叉分析。
 
 ---
 
 ## 🛠️ 核心 Excel 技術棧與設計模式 (Tech Stack & Architecture)
 
-| 技術類別 | 關鍵函數 / 功能 | 工業應用情境 |
+| 技術類別 | 關鍵函數 / 功能 | 工業應用情境與優勢 |
 | :--- | :--- | :--- |
-| **進階邏輯算式** | `XLOOKUP`, `IFS`, `SWITCH`, `AND`/`OR` | SCADA 多階告警判定、MES 規格自動檢核、EMS 費率查表 |
-| **架構設計** | 絕對引用 (`$`)、參數解耦 (Decoupling) | 動態門檻維護、契約容量設定、系統低耦合維護 |
-| **數據防呆與權限** | Data Validation, RBAC, Error-Trapping | 未授權輸入攔截、空值異常處理、超標自動警報 |
-| **數據分析與視覺化** | Pivot Table (% Running Total), Pareto Chart, Slicer | TPM 設備六大損失歸因、80/20 停機主因洞察儀表板 |
+| **進階邏輯算式** | `XLOOKUP`, `IFS`, `SWITCH`, `AND`, `OR` | SCADA 複合告警判定、MES SOP 規格動態檢核、EMS 時間電價自動查表 |
+| **架構設計** | 絕對引用 (`$`)、參數解耦 (Decoupling) | 獨立動態門檻區，降低模組間耦合度，實現無程式碼改變維護 |
+| **數據防呆與權限** | Data Validation, RBAC, Nested Error-Trapping | 未授權輸入攔截、空值與異常資料隔離、超標自動輸出診斷語法 |
+| **數據分析與視覺化**| Pivot Table (% Running Total), Pareto Chart, Slicer | TPM 設備六大損失歸因、80/20 瓶頸定位、動態戰情室互動儀表板 |
+
+---
+
+## 🎯 專案效益與工程價值 (Business & Engineering Impact)
+
+* **系統維護性 (Maintainability)**：解耦設計使廠務或品保人員無須修改任何邏輯算式，即可透過更新參數區完成全廠規則維護。
+* **數據穩健性 (Robustness)**：嚴密的多層防呆機制，杜絕未授權輸入或格式錯誤導致的後端算式崩潰。
+* **決策高效性 (Decision Efficiency)**：將繁雜的停機紀錄轉化為帕雷托戰情儀表板，協助管理層 3 秒內定位 80% 影響產能的核心問題。
 
 ---
 
