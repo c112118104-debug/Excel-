@@ -1,4 +1,5 @@
-# 🏭 工業級試算表邏輯建模與生產管理控制系統 (Industrial Engineering Excel Models)
+# 🏭 Industrial-Excel-System-Logic-Suite
+> **工業級試算表邏輯建模與生產管理控制系統 (Industrial Engineering Excel Models)**
 
 本專案庫包含 4 個基於工業工程（IE）與生產管理（Production Management）標準建構的 Excel 高階邏輯模組。專案擺脫傳統單純試算表計算思維，導入**參數解耦（Parameter Decoupling）**、**防呆驗證（Error-Trapping）**與**權限控管（RBAC）**架構，展示將工業控制與數據邏輯落地於 Excel 的系統化設計能力。
 
