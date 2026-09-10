@@ -11,6 +11,7 @@
 * **系統痛點**：傳統單一門檻值容易造成「極端異常降級漏報」與告警遮蔽（Alarm Masking）。
 * **邏輯架構**：建立 HH/H (High-High / High) 雙階層警報機制，整合 `IFS` 與 `AND`/`OR` 多條件布林邏輯算式。
 * **工程設計**：採用參數解耦（$F$2:$G$3 絕對引用），將動態門檻值抽出至獨立參數區，實現全模組免修改算式即可動態調整告警條件。
+  
 
 ### 2. EMS 時間電價稽核與四階降載預警模型 (`02_EMS_TOU_LoadShedding.xlsx`)
 * **系統痛點**：離尖峰電價計算複雜，且超過契約容量時缺乏即時預警機制。
@@ -40,12 +41,3 @@
 
 ---
 
-## 📂 專案檔案結構 (Repository Structure)
-
-```text
-.
-├── 01_SCADA_Alarm_Matrix.xlsx            # SCADA 告警矩陣與參數解耦模組
-├── 02_EMS_TOU_LoadShedding.xlsx          # EMS 時間電價稽核與降載預警模組
-├── 03_MES_SOP_RBAC_Validation.xlsx      # MES SOP 規格驗證與 RBAC 防呆模組
-├── 04_TPM_Pareto_Downtime_Analysis.xlsx    # TPM 六大損失與帕雷托樞紐分析表
-└── README.md                             # 專案說明文件
