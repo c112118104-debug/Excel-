@@ -1,12 +1,9 @@
-# 🏭 Industrial-Excel-System-Logic-Suite
-> **工業級試算表邏輯建模與生產管理控制系統 (Industrial Engineering Excel Models)**
+# 🏭 工業級試算表邏輯建模與生產管理控制系統 (Industrial Engineering Excel Models)
 
 ![Microsoft Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
-![Industrial Engineering](https://img.shields.io/badge/Domain-Industrial_Engineering-0078D4?style=for-the-badge)
-![Architecture](https://img.shields.io/badge/Architecture-Parameter_Decoupling-orange?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
-本專案庫包含 4 個基於工業工程（IE）與生產管理（Production Management）標準建構的 Excel 高階邏輯模組。專案擺脫傳統單純試算表數據填寫與基礎運算思維，導入**參數解耦（Parameter Decoupling）**、**防呆驗證（Error-Trapping）**與**權限控管（RBAC）**等高階系統架構思維，展現將工業控制、系統監控與數據邏輯完整落地於 Excel 的系統化設計能力。
+
+本專案庫包含 4 個基於工業工程（IE）與生產管理（Production Management）標準建構的 Excel 高階邏輯模組。專案擺脫傳統單純試算表數據填寫與基礎運算思維，導入參數解耦、防呆驗證 與 權限控管等高階系統架構思維，展現將工業控制、系統監控與數據邏輯完整落地於 Excel 的系統化設計能力。
 
 ---
 
