@@ -1,5 +1,4 @@
-# 🏭 Industrial-Excel-System-Logic-Suite
-> **工業級試算表邏輯建模與生產管理控制系統 (Industrial Engineering Excel Models)**
+# 🏭 工業級試算表邏輯建模與生產管理控制系統 (Industrial Engineering Excel Models)
 
 本專案庫包含 4 個基於工業工程（IE）與生產管理（Production Management）標準建構的 Excel 高階邏輯模組。專案擺脫傳統單純試算表計算思維，導入**參數解耦（Parameter Decoupling）**、**防呆驗證（Error-Trapping）**與**權限控管（RBAC）**架構，展示將工業控制與數據邏輯落地於 Excel 的系統化設計能力。
 
@@ -7,7 +6,7 @@
 
 ## 📌 核心模組與系統實作畫面 (Core Modules & System Logic)
 
-### 1. SCADA 設備動態監控與階層式告警矩陣 (`01_SCADA_Alarm_Matrix.xlsx`)
+### 1. SCADA 設備動態監控與階層式告警矩陣
 
 ![SCADA 設備動態監控與警報邏輯模組](./備運轉動態監控與警報邏輯模組.png)
 
@@ -17,7 +16,7 @@
 
 ---
 
-### 2. EMS 時間電價稽核與四階降載預警模型 (`02_EMS_TOU_LoadShedding.xlsx`)
+### 2. EMS 時間電價稽核與四階降載預警模型
 
 ![EMS 廠房時間電價計算與契約容量超標預警](./廠房時間電價計算與契約容量超標預警.png)
 
@@ -27,7 +26,7 @@
 
 ---
 
-### 3. MES/QA SOP 規格驗證與 RBAC 權限控管 (`03_MES_SOP_RBAC_Validation.xlsx`)
+### 3. MES/QA SOP 規格驗證與 RBAC 權限控管
 
 #### 前台輸入與 QA 診斷校對
 ![MES QA 邏輯校對結果](./MES%20後台%20RBAC%20權限與%20SOP%20規格QA%20驗證模組-1.png)
@@ -41,7 +40,7 @@
 
 ---
 
-### 4. TPM 設備六大損失與帕雷托 (Pareto) 數據分析儀表板 (`04_TPM_Pareto_Downtime_Analysis.xlsx`)
+### 4. TPM 設備六大損失與帕雷托 (Pareto) 數據分析儀表板
 
 #### 原始停機日誌資料表 (Raw Data Log)
 ![TPM 設備損失分類原始資料表](./TPM%20設備損失分類.png)
